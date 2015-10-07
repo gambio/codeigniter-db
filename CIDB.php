@@ -42,7 +42,7 @@
 define('BASEPATH', dirname(dirname(__FILE__)) . '/'); // no use of __DIR__ for PHP 5.2 compatibility
 
 // Require the main database file.
-require BASEPATH . 'CodeIgniterDB/DB.php';
+require BASEPATH . 'codeigniter-db/DB.php';
 
 // Create an instance of the CI mock object.
 global $CI;
