@@ -165,11 +165,11 @@ function &DB($params = '', $query_builder_override = NULL)
 		$query_builder = $active_record;
 	}
 
-	require_once(BASEPATH . 'CodeIgniterDB/DB_driver.php');
+	require_once(BASEPATH . 'codeigniter-db/DB_driver.php');
 
 	if ( ! isset($query_builder) OR $query_builder === TRUE)
 	{
-		require_once(BASEPATH . 'CodeIgniterDB/DB_query_builder.php');
+		require_once(BASEPATH . 'codeigniter-db/DB_query_builder.php');
 		if ( ! class_exists('CI_DB', FALSE))
 		{
 			/**
@@ -192,7 +192,7 @@ function &DB($params = '', $query_builder_override = NULL)
 	}
 
 	// Load the DB driver
-	$driver_file = BASEPATH.'CodeIgniterDB/drivers/'.$params['dbdriver'].'/'.$params['dbdriver'].'_driver.php';
+	$driver_file = BASEPATH.'codeigniter-db/drivers/'.$params['dbdriver'].'/'.$params['dbdriver'].'_driver.php';
 
 	file_exists($driver_file) OR show_error('Invalid DB driver');
 	require_once($driver_file);
@@ -204,7 +204,7 @@ function &DB($params = '', $query_builder_override = NULL)
 	// Check for a subdriver
 	if ( ! empty($DB->subdriver))
 	{
-		$driver_file = BASEPATH.'CodeIgniterDB/drivers/'.$DB->dbdriver.'/subdrivers/'.$DB->dbdriver.'_'.$DB->subdriver.'_driver.php';
+		$driver_file = BASEPATH.'codeigniter-db/drivers/'.$DB->dbdriver.'/subdrivers/'.$DB->dbdriver.'_'.$DB->subdriver.'_driver.php';
 
 		if (file_exists($driver_file))
 		{
