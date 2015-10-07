@@ -1,0 +1,16 @@
+{
+    "name": "gambio/codeigniter-db",
+    "description": "CodeIgniterDB adapter so that you can use the database object with composer in external applications.",
+    "type": "library",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Gambio GmbH",
+            "email": "a.tselengidis@gambio.de"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "codeigniter/framework": "^3.0"
+    }
+}
