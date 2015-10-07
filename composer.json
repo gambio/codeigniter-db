@@ -11,6 +11,5 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "codeigniter/framework": "^3.0"
     }
 }
