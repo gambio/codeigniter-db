@@ -752,8 +752,8 @@ abstract class CI_DB_driver {
 
 		if ( ! class_exists($driver, FALSE))
 		{
-			require_once(BASEPATH . 'CodeIgniterDB/DB_result.php');
-			require_once(BASEPATH.'CodeIgniterDB/drivers/'.$this->dbdriver.'/'.$this->dbdriver.'_result.php');
+			require_once(BASEPATH . 'codeigniter-db/DB_result.php');
+			require_once(BASEPATH.'codeigniter-db/drivers/'.$this->dbdriver.'/'.$this->dbdriver.'_result.php');
 		}
 
 		return $driver;
@@ -1611,7 +1611,7 @@ abstract class CI_DB_driver {
 	{
 		if ( ! class_exists('CI_DB_Cache', FALSE))
 		{
-			require_once(BASEPATH . 'CodeIgniterDB/DB_cache.php');
+			require_once(BASEPATH . 'codeigniter-db/DB_cache.php');
 		}
 		elseif (is_object($this->CACHE))
 		{
