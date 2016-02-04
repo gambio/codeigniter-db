@@ -114,11 +114,6 @@ function log_message($type, $message)
         {
             xtc_db_error('CIDB Library Error', '', $message);    
         } 
-        else 
-        {
-            throw new Exception('CIDB Library Error: ' . $message); 
-        }
-		
 	}
 
 	return; // Do not log database messages.
