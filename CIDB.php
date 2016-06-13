@@ -110,7 +110,7 @@ function log_message($type, $message)
 {
 	if($type === 'error')
 	{
-        if (function_exists('xtc_db_error'))  // GX2 logging method 
+        if (function_exists('xtc_db_error'))  // GX3 logging method 
         {
             xtc_db_error('CIDB Library Error', '', $message);    
         } 
