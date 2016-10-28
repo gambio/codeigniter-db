@@ -14,6 +14,18 @@ namespace CIDB;
 
 require_once __DIR__ . '/CIDB.php';
 
+/**
+ * Class CIDBFactory
+ * 
+ * Use this class if you need to mock the creation of the database objects or if you need a PSR4 compatible class. 
+ * 
+ * Example: 
+ * 
+ * $cidbFactory = new \CIDB\Factory; 
+ * 
+ * 
+ * @package CIDB
+ */
 class CIDBFactory
 {
 	/**
@@ -80,7 +92,7 @@ class CIDBFactory
 	 */
 	protected function _validateConnectionString($connectionString)
 	{
-		if(empty($connectionString) || is_string($connectionString))
+		if(empty($connectionString) || !is_string($connectionString))
 		{
 			throw new \InvalidArgumentException('Invalid connection string provided!');
 		}
