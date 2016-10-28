@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   CIDB.php 2016-07-03
+   CIDB.php 2016-10-28
    Gambio GmbH
    http://www.gambio.de
    Copyright (c) 2016 Gambio GmbH
@@ -31,9 +31,10 @@
  * v1.0.0 - 27.01.2015 Enables the core database functions (Cache, Forge and Utility classes missing).
  * v1.1.0 - 04.02.2016 Enabled functionality of the database utility class.
  * v1.2.0 - 04.07.2016 Enabled functionality of the database forge class.
+ * v1.3.0 - 28.10.2016 Created wrapper class which for better mocking support and PSR4 autoloading.
  *
  * @link    http://www.codeigniter.com/user_guide/database/index.html
- * @version 1.2
+ * @version 1.3
  */
 
 // ----------------------------------------------------------------------------
@@ -106,7 +107,7 @@ function CIDBUtils($connectionString)
 
 /**
  * Initialize and return the database forge object.
- * 
+ *
  * @param $connectionString
  *
  * @return CI_DB_mysqli_forge
