@@ -17,55 +17,72 @@ require_once __DIR__ . '/CIDB.php';
 class CIDBFactory
 {
 	/**
-	 * @var string
-	 */
-	protected $connectionString;
-	
-	
-	/**
-	 * CIDBFactory constructor.
+	 * Create Query Builder Class
 	 *
 	 * e.g. 'mysqli://user:password@localhost/dbname?socket=/tmp/mysql.sock'
 	 *
 	 * The socket parameter is optional.
 	 *
 	 * @param string $connectionString Provide a CodeIgniter DB compatible connection string.
-	 */
-	public function __construct($connectionString)
-	{
-		$this->connectionString = $connectionString;
-	}
-	
-	
-	/**
-	 * Create Query Builder Class
 	 *
 	 * @return \CI_DB_query_builder
 	 */
-	public function createQueryBuilder()
+	public function createQueryBuilder($connectionString)
 	{
-		return CIDB($this->connectionString);
+		$this->_validateConnectionString($connectionString);
+		
+		return CIDB($connectionString);
 	}
 	
 	
 	/**
 	 * Create Utilities Class
 	 *
+	 *  e.g. 'mysqli://user:password@localhost/dbname?socket=/tmp/mysql.sock'
+	 *
+	 * The socket parameter is optional.
+	 *
+	 * @param string $connectionString Provide a CodeIgniter DB compatible connection string.
+	 *
 	 * @return \CI_DB_utility
 	 */
-	public function createUtils()
+	public function createUtils($connectionString)
 	{
-		return CIDBUtils($this->connectionString);
+		$this->_validateConnectionString($connectionString);
+		
+		return CIDBUtils($connectionString);
 	}
 	
 	
 	/**
 	 * Create Forge Class
 	 *
+	 *  e.g. 'mysqli://user:password@localhost/dbname?socket=/tmp/mysql.sock'
+	 *
+	 * The socket parameter is optional.
+	 *
+	 * @param string $connectionString Provide a CodeIgniter DB compatible connection string.
+	 *
 	 * @return \CI_DB_mysqli_forge
 	 */
-	public function createForge()
+	public function createForge($connectionString)
 	{
-		return CIDBForge($this->connectionString);
+		$this->_validateConnectionString($connectionString);
+		
+		return CIDBForge($connectionString);
+	}
+	
+	
+	/**
+	 * Validate the provided connection string.
+	 *
+	 * @param string $connectionString
+	 */
+	protected function _validateConnectionString($connectionString)
+	{
+		if(empty($connectionString) || is_string($connectionString))
+		{
+			throw new \InvalidArgumentException('Invalid connection string provided!');
+		}
 	}
 }
