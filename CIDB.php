@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   CIDB.php 2016-10-28
+   CIDB.php 2016-11-01
    Gambio GmbH
    http://www.gambio.de
    Copyright (c) 2016 Gambio GmbH
@@ -135,18 +135,21 @@ function CIDBForge($connectionString)
  * @param string $type    Type of the log message ("debug", "error" etc).
  * @param string $message The message that concerns the log item.
  */
-function log_message($type, $message)
+if(!function_exists('log_message'))
 {
-	if($type === 'error')
+	function log_message($type, $message)
 	{
-		echo $message;
-		if(function_exists('xtc_db_error'))  // GX3 logging method 
+		if($type === 'error')
 		{
-			xtc_db_error('CIDB Library Error', '', $message);
+			echo $message;
+			if(function_exists('xtc_db_error'))  // GX3 logging method 
+			{
+				xtc_db_error('CIDB Library Error', '', $message);
+			}
 		}
+		
+		return; // Do not log database messages.
 	}
-	
-	return; // Do not log database messages.
 }
 
 /**
@@ -157,9 +160,34 @@ function log_message($type, $message)
  *
  * @throws Exception When DB class wants to show an error.
  */
-function show_error($message)
+if(!function_exists('show_error'))
 {
-	throw new Exception($message);
+	function show_error($message)
+	{
+		throw new Exception($message);
+	}
+}
+
+if(!function_exists('is_php'))
+{
+	/**
+	 * Determines if the current version of PHP is equal to or greater than the supplied value
+	 *
+	 * @param string
+	 *
+	 * @return bool TRUE if the current version is $version or higher
+	 */
+	function is_php($version)
+	{
+		static $_is_php;
+		$version = (string)$version;
+		if(!isset($_is_php[$version]))
+		{
+			$_is_php[$version] = version_compare(PHP_VERSION, $version, '>=');
+		}
+		
+		return $_is_php[$version];
+	}
 }
 
 /**
