@@ -403,7 +403,14 @@ abstract class CI_DB_driver {
 		{
 			return TRUE;
 		}
-
+        // START Gambio modification
+        elseif (isset($GLOBALS["___mysqli_ston"]))
+        {
+            $this->conn_id = $GLOBALS["___mysqli_ston"];
+            return TRUE;
+        }
+        // END Gambio modification
+        
 		// ----------------------------------------------------------------
 
 		// Connect to the database and set the connection ID
