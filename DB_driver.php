@@ -404,7 +404,7 @@ abstract class CI_DB_driver {
 			return TRUE;
 		}
         // START Gambio modification
-        elseif (isset($GLOBALS["___mysqli_ston"]))
+        elseif (isset($GLOBALS["___mysqli_ston"]) && mysqli_ping($GLOBALS["___mysqli_ston"]))
         {
             $this->conn_id = $GLOBALS["___mysqli_ston"];
             return TRUE;
